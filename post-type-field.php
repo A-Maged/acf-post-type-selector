@@ -43,7 +43,7 @@ class cm_post_type_field extends acf_field
         *  label (string) Multiple words, can include spaces, visible when selecting a field type
         */
         
-        $this->label = 'CM Post Type Selector';
+        $this->label = 'Post Type Selector';
         
         
         /*
