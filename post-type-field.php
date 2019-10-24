@@ -130,15 +130,16 @@ class cm_post_type_field extends acf_field
         $checked = [];
         if (! empty($field[ 'value'])) {
             foreach ($field[ 'value' ] as $val) {
-                $checked[ $val ] = 'selected';
+                $checked[ $val ] = true;
             }
         } ?>
             <select class="js-multiple-select2" def name="<?php echo $field[ 'name' ] ?>[]" multiple="multiple">
                 <option value="null">none</option>
                 <?php
-                foreach ($post_types as $type) {
-                    echo '<option ' . $checked[$type] . '  value="' . $type . '" >' . $type . '</option>';
-                } ?>
+                  foreach ($post_types as $type) {
+                      $isSelected = isset($checked[ $type ]) && $checked[ $type ] ? 'selected="1"'  : null;
+                      echo '<option  ' . $isSelected . ' value="' . $type . '" >' . $type . '</option>';
+                  } ?>
             </select>
 		<?php
     }
