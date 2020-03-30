@@ -99,13 +99,13 @@ class cm_post_type_field extends acf_field
         *  Please note that you must also have a matching $defaults value for the field name (font_size)
         */
         
-        // acf_render_field_setting($field, array(
-        //     'label'			=> __('Font Size', 'TEXTDOMAIN'),
-        //     'instructions'	=> __('Customise the input font size', 'TEXTDOMAIN'),
-        //     'type'			=> 'number',
-        //     'name'			=> 'font_size',
-        //     'prepend'		=> 'px',
-        // ));
+        acf_render_field_setting($field, array(
+            'label'			=> __('Allow multiple?'),
+            'instructions'	=> '',
+            'name'			=> 'multiple',
+            'type'			=> 'true_false',
+            'ui'			=> 1,
+        ));
     }
 
     /*
@@ -125,20 +125,22 @@ class cm_post_type_field extends acf_field
     
     public function render_field($field)
     {
+
         $post_types = get_post_types(
             [
                 'show_ui' => true,
-            ], 
+            ],
             'objects'
         );
-
+        
+        $isMultiple = $field['multiple'] ? 'multiple="multiple"' : '';
         $checked = [];
         if (! empty($field[ 'value'])) {
             foreach ($field[ 'value' ] as $val) {
                 $checked[ $val ] = true;
             }
         } ?>
-            <select class="js-multiple-select2" def name="<?php echo $field[ 'name' ] ?>[]" multiple="multiple">
+            <select class="js-multiple-select2" def name="<?php echo $field[ 'name' ] ?>[]" <?php echo $isMultiple ?>>
                 <option value="null">none</option>
                 <?php
                   foreach ($post_types as $type => $typeObject) {
