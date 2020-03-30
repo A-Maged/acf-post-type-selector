@@ -13,7 +13,7 @@
         /* initialize Select2 */
         $selectElement.select2({
             placeholder: 'Select Post types',
-            closeOnSelect: false,
+            closeOnSelect: true, // this eleminates some bugs regaring updating
             width: '100%'
         });
 
@@ -22,10 +22,7 @@
 
             if (data.text === 'none') {
                 /* clear all */
-                $selectElement
-                    .val(null)
-                    .val('null')
-                    .trigger('change');
+                clearAllSelections($selectElement);
             } else {
                 /* remove "null" option */
                 $selectElement
@@ -35,14 +32,9 @@
             }
         });
 
-        $selectElement.on('select2:unselect', function(e) {
-            /* if no elements are selected */
-            if ($selectElement.select2('data')) {
-                /* choose "null" option */
-                $selectElement.val('null').trigger('change');
-            }
-        });
+        $selectElement.on('select2:unselect', selectNullIfEmpty.bind(null, $selectElement));
     }
+
 
     if (typeof acf.add_action !== 'undefined') {
         /*
@@ -84,5 +76,20 @@
                     initialize_field($(this));
                 });
         });
+    }
+
+    function clearAllSelections($selectElement) {
+        $selectElement
+            .val(null)
+            .val('null')
+            .trigger('change');
+    }
+
+    function selectNullIfEmpty($selectElement) {
+        /* if no elements are selected */
+        if (!$selectElement.select2('data').length) {
+            /* choose "null" option */
+            $selectElement.val('null').trigger('change');
+        }
     }
 })(jQuery);
