@@ -36,7 +36,7 @@ class cm_post_type_field extends acf_field
         *  name (string) Single word, no spaces. Underscores allowed
         */
         
-        $this->name = 'cm_post_type_selector';
+        $this->name = 'dod_post_type_selector';
         
         
         /*
@@ -169,11 +169,10 @@ class cm_post_type_field extends acf_field
 
 
         // register & include JS
-        wp_register_script('select2', "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js", array('acf-input'), $version);
-        wp_enqueue_script('select2');
+        wp_enqueue_script('select2', "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js", array('acf-input'), $version);
 
-        wp_register_script('custom-js', "{$url}assets/js/input.js", array('acf-input'), $version);
-        wp_enqueue_script('custom-js');
+        wp_enqueue_script('custom-js', "{$url}assets/js/input.js", array('acf-input'), $version);
+        wp_enqueue_style('custom-css', "{$url}assets/style/style.css");
 
         // register & include CSS
         // wp_register_style('select2-css', "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css", array('acf-input'), $version);
@@ -198,7 +197,6 @@ class cm_post_type_field extends acf_field
     
     public function update_value($value, $post_id, $field)
     {
-        // var_export($value);
         return $value;
     }
 }
