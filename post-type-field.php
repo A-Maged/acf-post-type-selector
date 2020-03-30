@@ -125,8 +125,13 @@ class cm_post_type_field extends acf_field
     
     public function render_field($field)
     {
-        $post_types = get_post_types();
-        
+        $post_types = get_post_types(
+            [
+                'show_ui' => true,
+            ], 
+            'objects'
+        );
+
         $checked = [];
         if (! empty($field[ 'value'])) {
             foreach ($field[ 'value' ] as $val) {
@@ -136,9 +141,9 @@ class cm_post_type_field extends acf_field
             <select class="js-multiple-select2" def name="<?php echo $field[ 'name' ] ?>[]" multiple="multiple">
                 <option value="null">none</option>
                 <?php
-                  foreach ($post_types as $type) {
+                  foreach ($post_types as $type => $typeObject) {
                       $isSelected = isset($checked[ $type ]) && $checked[ $type ] ? 'selected="1"'  : null;
-                      echo '<option  ' . $isSelected . ' value="' . $type . '" >' . $type . '</option>';
+                      echo '<option  ' . $isSelected . ' value="' . $type . '" >' . $typeObject->label . '</option>';
                   } ?>
             </select>
 		<?php
