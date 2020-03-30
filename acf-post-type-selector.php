@@ -1,7 +1,7 @@
 <?php
 
 /*
-Plugin Name: acf post type selector
+Plugin Name: ACF Post Type Selector
 Plugin URI: PLUGIN_URL
 Description: SHORT_DESCRIPTION
 Version: 1.0.0
