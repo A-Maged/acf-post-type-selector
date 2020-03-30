@@ -36,7 +36,7 @@ class cm_post_type_field extends acf_field
         *  name (string) Single word, no spaces. Underscores allowed
         */
         
-        $this->name = 'dod_post_type_selector';
+        $this->name = 'acf_post_type_selector';
         
         
         /*

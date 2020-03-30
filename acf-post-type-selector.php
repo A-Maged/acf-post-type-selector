@@ -19,9 +19,9 @@ if (! defined('ABSPATH')) {
 
 
 // check if class already exists
-if (!class_exists('cm_acf_post_type_selector')) :
+if (!class_exists('acf_post_type_selector')) :
 
-class cm_acf_post_type_selector
+class acf_post_type_selector
 {
     
     // vars
@@ -80,7 +80,7 @@ class cm_acf_post_type_selector
 
 
 // initialize
-new cm_acf_post_type_selector();
+new acf_post_type_selector();
 
 
 // class_exists check
